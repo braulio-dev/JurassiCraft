@@ -11,7 +11,7 @@ class Renderer(internal val game: Game) {
 
     private val shaderProgram: ShaderProgram
     private val view = RenderView(this)
-    private val renderQueue = mutableListOf<Model>()
+    private val models = mutableListOf<Model>()
 
     init {
         createCapabilities()
@@ -28,6 +28,7 @@ class Renderer(internal val game: Game) {
 
     internal fun destroy() {
         shaderProgram.destroy()
+        models.forEach { it.destroy() }
     }
 
     internal fun render() {
@@ -46,29 +47,24 @@ class Renderer(internal val game: Game) {
     }
 
     // Render all elements in the render queue
-    private fun renderQueue() = renderQueue.listIterator().apply {
+    private fun renderQueue() = models.listIterator().apply {
         while (hasNext()) {
             val model = next()
-            if (model.shouldRender()) {
-                model.modelParts.forEach { mesh ->
-                    mesh.bind()
-                    glEnable(GL_DEPTH_TEST)
-                    model.trackedEntities.forEach { entity ->
-                        shaderProgram.setUniform("world", entity.worldMatrix)
-                        glDrawElements(GL_TRIANGLES, mesh.vertexCount, GL_UNSIGNED_INT, 0)
-                    }
-                    glDisable(GL_DEPTH_TEST)
-                    mesh.unbind()
+            model.modelParts.forEach { mesh ->
+                mesh.bind()
+                glEnable(GL_DEPTH_TEST)
+                model.trackedEntities.forEach { entity ->
+                    shaderProgram.setUniform("world", entity.worldMatrix)
+                    glDrawElements(GL_TRIANGLES, mesh.vertexCount, GL_UNSIGNED_INT, 0)
                 }
-
-            } else {
-                remove() // Remove the element from the render queue
+                glDisable(GL_DEPTH_TEST)
+                mesh.unbind()
             }
         }
     }
 
-    internal fun queue(element: Model) {
-        renderQueue.add(element)
+    internal fun addModel(element: Model) {
+        models.add(element)
     }
 
 }

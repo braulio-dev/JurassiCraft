@@ -11,6 +11,8 @@ import me.jurassicraft.client.util.Keys
 import me.jurassicraft.client.world.World
 import org.joml.Vector3f
 import org.joml.Vector4f
+import org.lwjgl.glfw.GLFW
+import org.lwjgl.glfw.GLFW.GLFW_KEY_LEFT_SHIFT
 
 lateinit var entity: Entity
 
@@ -66,11 +68,16 @@ fun init(game: Game) {
     val model = Model()
     entity = Entity(world)
     entity.position = Vector3f(0.0f, 0.0f, -2.0f)
+
+//    var block2 = Entity(world)
+//    block2.position = Vector3f(0.0f, 0.0f, -2.0f)
+
     val mesh = Mesh(positions, indices, colors)
     model.modelParts.add(mesh)
     model.trackedEntities.add(entity)
+//    model.trackedEntities.add(block2)
 
-    game.renderer.queue(model)
+    game.renderer.addModel(model)
 }
 
 @EventHandler
@@ -78,7 +85,7 @@ fun onMove(event: KeyboardInputEvent) {
     val delta = Vector4f(0f)
     when (event.key) {
         Keys.SPACE -> delta.y = 1f
-        Keys.SHIFT -> delta.y = -1f
+        Keys.LEFT_SHIFT -> delta.y = -1f
         Keys.W -> delta.z = 1f
         Keys.S -> delta.z = -1f
         Keys.A -> delta.x = -1f
