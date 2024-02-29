@@ -17,6 +17,8 @@ dependencies {
     implementation("org.lwjgl:lwjgl-shaderc:3.3.3")
     implementation("org.lwjgl:lwjgl-opengl:3.3.3")
     implementation("org.joml:joml:1.9.25")
+    implementation("io.github.microutils:kotlin-logging:2.0.11")
+    implementation("ch.qos.logback:logback-classic:1.4.14")
     implementation(kotlin("stdlib-jdk8"))
     testImplementation(kotlin("test-junit"))
 }
@@ -46,4 +48,8 @@ sourceSets {
         java.srcDirs("src/test/kotlin")
         resources.srcDirs("src/test/resources")
     }
+}
+
+tasks.withType<Copy> {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
