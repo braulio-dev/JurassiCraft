@@ -18,13 +18,8 @@ class Mesh(vertices: FloatArray, indices: IntArray, colors: FloatArray? = null) 
         vboId = glGenBuffers()
         glBindBuffer(GL_ARRAY_BUFFER, vboId)
         glBufferData(GL_ARRAY_BUFFER, vertices, GL_STATIC_DRAW)
+        glEnableVertexAttribArray(0)
         glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0)
-        glBindBuffer(GL_ARRAY_BUFFER, 0)
-
-        // Create IBO and upload index data
-        iboId = glGenBuffers()
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId)
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices, GL_STATIC_DRAW)
 
         // Create CBO and upload color data
         if (colors != null) {
@@ -37,7 +32,13 @@ class Mesh(vertices: FloatArray, indices: IntArray, colors: FloatArray? = null) 
             cboId = 0
         }
 
+        // Create IBO and upload index data
+        iboId = glGenBuffers()
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId)
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices, GL_STATIC_DRAW)
+
         // Unbind VAO
+        glBindBuffer(GL_ARRAY_BUFFER, 0)
         glBindVertexArray(0)
     }
 

@@ -20,6 +20,8 @@ dependencies {
     implementation("io.github.microutils:kotlin-logging:2.0.11")
     implementation("ch.qos.logback:logback-classic:1.4.14")
     implementation(kotlin("stdlib-jdk8"))
+    implementation("org.reflections:reflections:0.10.2")
+    implementation("com.google.guava:guava:30.1.1-jre")
     testImplementation(kotlin("test-junit"))
 }
 

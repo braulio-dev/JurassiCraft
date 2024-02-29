@@ -1,16 +1,12 @@
 package me.jurassicraft.client.game
 
+import me.jurassicraft.client.event.callEvent
+import me.jurassicraft.client.event.KeyboardInputEvent
 import org.lwjgl.glfw.Callbacks.glfwFreeCallbacks
 import org.lwjgl.glfw.GLFW.*
-import org.lwjgl.opengl.GL
-import org.lwjgl.opengl.GL11.GL_NO_ERROR
-import org.lwjgl.opengl.GL11.glGetError
 
 private val log = mu.KotlinLogging.logger { }
 
-/**
- * Options for the window
- */
 data class WindowOptions(
     val compatibleProfile: Boolean,
     val fps: Int,
@@ -18,11 +14,15 @@ data class WindowOptions(
     val dimension: Pair<Int, Int>
 )
 
-class GameWindow(val title: String, val options: WindowOptions) {
+class GameWindow(title: String, options: WindowOptions) {
+
     val window: Long
+
     var dimension: Pair<Int, Int>
+
     val aspectRatio: Float
         get() = dimension.first.toFloat() / dimension.second.toFloat()
+
     val closed: Boolean
         get() = glfwWindowShouldClose(window)
 
@@ -95,6 +95,8 @@ class GameWindow(val title: String, val options: WindowOptions) {
         if (key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE) {
             glfwSetWindowShouldClose(window, true)
         }
+
+        callEvent(KeyboardInputEvent(key, mods))
     }
 
 }

@@ -1,6 +1,8 @@
-package me.jurassicraft.client.game
+package me.jurassicraft.client
 
-import me.jurassicraft.client.game.render.GameRenderer
+import me.jurassicraft.client.game.GameWindow
+import me.jurassicraft.client.game.WindowOptions
+import me.jurassicraft.client.game.render.Renderer
 import mu.KotlinLogging
 
 private val log = KotlinLogging.logger { }
@@ -9,7 +11,7 @@ class Game(windowOptions: WindowOptions) {
 
     val window = GameWindow("JurassiCraft", windowOptions)
 
-    val renderer = GameRenderer(this)
+    val renderer = Renderer(this)
 
     var running = false
         private set

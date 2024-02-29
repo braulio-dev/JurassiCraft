@@ -9,19 +9,23 @@ interface Coordinate {
 }
 
 interface WorldPosition : Coordinate {
-    val world: World
+    var world: World
 }
 
 class Position(
-    override val x: Int,
-    override val y: Int,
-    override val z: Int,
-    override val world: World
-) : WorldPosition
+    override var x: Int,
+    override var y: Int,
+    override var z: Int,
+    override var world: World
+) : WorldPosition {
+    constructor(world: World) : this(0, 0, 0, world)
+}
 
 class FinePosition(
-    override val x: Float,
-    override val y: Float,
-    override val z: Float,
-    override val world: World
-) : WorldPosition
+    override var x: Float,
+    override var y: Float,
+    override var z: Float,
+    override var world: World
+) : WorldPosition {
+    constructor(world: World) : this(0f, 0f, 0f, world)
+}

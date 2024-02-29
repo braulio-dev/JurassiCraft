@@ -1,10 +1,6 @@
 package me.jurassicraft.client.world
 
-import me.jurassicraft.client.element.Position
-import me.jurassicraft.client.element.RenderElement
-import me.jurassicraft.client.element.impl.Cube
-
-class Chunk(val x: Int, val z: Int, val world: World) : RenderElement {
+class Chunk(val x: Int, val z: Int, val world: World) {
 
     private val blocks = mutableListOf<Block>()
 
@@ -22,7 +18,7 @@ class Chunk(val x: Int, val z: Int, val world: World) : RenderElement {
         TODO()
     }
 
-    override fun render() {
+    fun render() {
         blocks.forEach { it.render() }
     }
 }

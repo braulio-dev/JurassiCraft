@@ -2,6 +2,7 @@ package me.jurassicraft.client.game.render
 
 import org.joml.Matrix4f
 import org.lwjgl.opengl.GL20.*
+import org.lwjgl.system.MemoryStack
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.nio.FloatBuffer
@@ -21,7 +22,11 @@ class ShaderProgram {
     }
 
     fun setUniform(uniformName: String, mat4: Matrix4f) {
-        glUniformMatrix4fv(uniforms[uniformName]!!, false, mat4.get(FloatArray(16)))
+        MemoryStack.stackPush().use {
+            val buffer = it.mallocFloat(16)
+            mat4.get(buffer)
+            glUniformMatrix4fv(uniforms[uniformName]!!, false, buffer)
+        }
     }
 
     fun createUniform(uniformName: String) {
@@ -94,7 +99,7 @@ class ShaderProgram {
     private fun readShaderFile(fileName: String): String {
         val shaderSource = StringBuilder()
 
-        val inputStream = GameRenderer::class.java.getResourceAsStream(fileName)
+        val inputStream = Renderer::class.java.getResourceAsStream(fileName)
         val reader = BufferedReader(InputStreamReader(inputStream!!))
         var line: String?
         while (reader.readLine().also { line = it } != null) {
