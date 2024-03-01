@@ -23,6 +23,7 @@ class Renderer(internal val game: Game) {
 
         shaderProgram.createUniform("world")
         shaderProgram.createUniform("projection")
+        shaderProgram.createUniform("tex_sampler")
         view.update()
     }
 
@@ -32,13 +33,14 @@ class Renderer(internal val game: Game) {
     }
 
     internal fun render() {
-        glClearColor(1.0f, 1.0f, 1.0f, 1.0f)
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f)
         glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
         glViewport(0, 0, game.window.dimension.first, game.window.dimension.second)
 
         // Use the shader program
         shaderProgram.bind()
         shaderProgram.setUniform("projection", view.projectionMatrix)
+        shaderProgram.setUniform("tex_sampler", 0)
 
         renderQueue()
 
@@ -51,6 +53,7 @@ class Renderer(internal val game: Game) {
         while (hasNext()) {
             val model = next()
             model.modelParts.forEach { mesh ->
+                glActiveTexture(GL_TEXTURE0)
                 mesh.bind()
                 glEnable(GL_DEPTH_TEST)
                 model.trackedEntities.forEach { entity ->

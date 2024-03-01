@@ -21,7 +21,8 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.4.14")
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.reflections:reflections:0.10.2")
-    implementation("com.google.guava:guava:30.1.1-jre")
+    implementation("com.google.guava:guava:33.0.0-jre")
+    implementation("org.l33tlabs.twl:pngdecoder:1.0")
     testImplementation(kotlin("test-junit"))
 }
 

@@ -3,6 +3,7 @@ package me.jurassicraft.client
 import me.jurassicraft.client.game.GameWindow
 import me.jurassicraft.client.game.WindowOptions
 import me.jurassicraft.client.game.render.Renderer
+import me.jurassicraft.client.game.resource.TextureManager
 import mu.KotlinLogging
 
 private val log = KotlinLogging.logger { }
@@ -12,6 +13,8 @@ class Game(windowOptions: WindowOptions) {
     val window = GameWindow("JurassiCraft", windowOptions)
 
     val renderer = Renderer(this)
+
+    val textureManager = TextureManager()
 
     var running = false
         private set

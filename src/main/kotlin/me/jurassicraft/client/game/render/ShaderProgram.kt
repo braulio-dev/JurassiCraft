@@ -5,7 +5,6 @@ import org.lwjgl.opengl.GL20.*
 import org.lwjgl.system.MemoryStack
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import java.nio.FloatBuffer
 
 class ShaderProgram {
 
@@ -19,6 +18,10 @@ class ShaderProgram {
         if (program == 0) {
             error("Failed to create shader program")
         }
+    }
+
+    fun setUniform(uniformName: String, value: Int) {
+        glUniform1i(uniforms[uniformName]!!, value)
     }
 
     fun setUniform(uniformName: String, mat4: Matrix4f) {
