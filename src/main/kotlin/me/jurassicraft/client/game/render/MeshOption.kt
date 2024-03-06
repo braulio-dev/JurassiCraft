@@ -56,18 +56,13 @@ class TextureOption(private val texture: Texture, val coords: FloatArray) : Mesh
     override fun create(mesh: Mesh) {
         tboId = glGenBuffers()
 
-        // flip coords
-//        for (i in 1 until coords.size step 2) {
-//            coords[i] = 1 - coords[i]
-//        }
-
         MemoryStack.stackPush().use {
             val textCoordsBuffer: FloatBuffer = it.callocFloat(coords.size)
             textCoordsBuffer.put(0, coords)
 
-            glEnableVertexAttribArray(1)
             glBindBuffer(GL_ARRAY_BUFFER, tboId)
             glBufferData(GL_ARRAY_BUFFER, textCoordsBuffer, GL_STATIC_DRAW)
+            glEnableVertexAttribArray(1)
             glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0)
             glBindBuffer(GL_ARRAY_BUFFER, 0)
         }

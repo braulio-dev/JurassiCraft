@@ -3,7 +3,7 @@ package me.jurassicraft.client.game.render
 import me.jurassicraft.client.util.math.getProjection
 import org.joml.Matrix4f
 
-const val FOV = -60f // Deg
+const val FOV = 60f // Deg
 const val Z_NEAR = 0.01f
 const val Z_FAR = 1000.0f
 

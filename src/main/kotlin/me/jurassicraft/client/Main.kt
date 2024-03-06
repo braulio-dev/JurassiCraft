@@ -7,6 +7,7 @@ import me.jurassicraft.client.game.WindowOptions
 import me.jurassicraft.client.game.render.Mesh
 import me.jurassicraft.client.game.render.Model
 import me.jurassicraft.client.game.render.TextureOption
+import me.jurassicraft.client.game.resource.AssetManager
 import me.jurassicraft.client.game.world.Entity
 import me.jurassicraft.client.util.Keys
 import me.jurassicraft.client.world.World
@@ -102,16 +103,12 @@ fun init(game: Game) {
     val model = Model()
     entity = Entity(world)
     entity.position = Vector3f(0.0f, 0.0f, -2.0f)
-    println(entity.rotation)
+    entity.setRotation(1f, 1f, 1f, Math.toRadians(0.0).toFloat())
 
-//    var block2 = Entity(world)
-//    block2.position = Vector3f(0.0f, 0.0f, -2.0f)
-
-    val texture = game.textureManager["/assets/textures/blocks/default.png"]
+    val texture = game.assetManager.getTexture("/blocks/default.png")
     val mesh = Mesh(positions, indices, TextureOption(texture, textCoords))
     model.modelParts.add(mesh)
     model.trackedEntities.add(entity)
-//    model.trackedEntities.add(block2)
 
     game.renderer.addModel(model)
 }

@@ -16,6 +16,7 @@ dependencies {
     implementation("org.lwjgl:lwjgl-glfw:3.3.3")
     implementation("org.lwjgl:lwjgl-shaderc:3.3.3")
     implementation("org.lwjgl:lwjgl-opengl:3.3.3")
+    implementation("org.lwjgl:lwjgl-stb:3.3.3")
     implementation("org.joml:joml:1.9.25")
     implementation("io.github.microutils:kotlin-logging:2.0.11")
     implementation("ch.qos.logback:logback-classic:1.4.14")
@@ -23,6 +24,7 @@ dependencies {
     implementation("org.reflections:reflections:0.10.2")
     implementation("com.google.guava:guava:33.0.0-jre")
     implementation("org.l33tlabs.twl:pngdecoder:1.0")
+    implementation("org.apache.commons:commons-io:1.3.2")
     testImplementation(kotlin("test-junit"))
 }
 
