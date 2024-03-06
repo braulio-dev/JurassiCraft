@@ -3,11 +3,11 @@ package me.jurassicraft.client
 import me.jurassicraft.client.event.EventHandler
 import me.jurassicraft.client.event.KeyboardInputEvent
 import me.jurassicraft.client.event.classScan
-import me.jurassicraft.client.game.WindowOptions
+import me.jurassicraft.client.game.Game
+import me.jurassicraft.client.game.GameOptions
 import me.jurassicraft.client.game.render.Mesh
 import me.jurassicraft.client.game.render.Model
 import me.jurassicraft.client.game.render.TextureOption
-import me.jurassicraft.client.game.resource.AssetManager
 import me.jurassicraft.client.game.world.Entity
 import me.jurassicraft.client.util.Keys
 import me.jurassicraft.client.world.World
@@ -17,10 +17,10 @@ import org.joml.Vector4f
 lateinit var entity: Entity
 
 fun main() {
-    val game = Game(WindowOptions(
+    val game = Game(GameOptions(
         true,
-        60,
-        20,
+        0,
+        30,
         Pair(1280, 720)
     ))
 

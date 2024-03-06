@@ -1,6 +1,6 @@
 package me.jurassicraft.client.game.render
 
-import me.jurassicraft.client.Game
+import me.jurassicraft.client.game.Game
 import mu.KotlinLogging
 import org.lwjgl.opengl.GL.createCapabilities
 import org.lwjgl.opengl.GL20.*

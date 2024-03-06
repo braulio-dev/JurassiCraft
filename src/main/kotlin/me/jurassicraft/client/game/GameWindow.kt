@@ -7,14 +7,14 @@ import org.lwjgl.glfw.GLFW.*
 
 private val log = mu.KotlinLogging.logger { }
 
-data class WindowOptions(
+data class GameOptions(
     val compatibleProfile: Boolean,
     val fps: Int,
     val ups: Int,
     val dimension: Pair<Int, Int>
 )
 
-class GameWindow(title: String, options: WindowOptions) {
+class GameWindow(title: String, val options: GameOptions) {
 
     val window: Long
 
