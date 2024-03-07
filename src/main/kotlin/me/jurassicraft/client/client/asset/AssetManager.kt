@@ -1,9 +1,8 @@
-package me.jurassicraft.client.game.resource
+package me.jurassicraft.client.client.asset
 
 import mu.KotlinLogging
 import org.apache.commons.io.FileUtils
 import java.io.File
-import java.nio.file.Files
 
 
 private val log = KotlinLogging.logger {}

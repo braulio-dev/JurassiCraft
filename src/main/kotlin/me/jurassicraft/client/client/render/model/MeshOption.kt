@@ -1,6 +1,6 @@
-package me.jurassicraft.client.game.render
+package me.jurassicraft.client.client.render.model
 
-import me.jurassicraft.client.game.resource.Texture
+import me.jurassicraft.client.client.asset.Texture
 import org.lwjgl.opengl.GL20.*
 import org.lwjgl.system.MemoryStack
 import java.nio.FloatBuffer

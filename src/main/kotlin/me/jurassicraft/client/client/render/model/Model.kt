@@ -1,6 +1,4 @@
-package me.jurassicraft.client.game.render
-
-import me.jurassicraft.client.game.world.Entity
+package me.jurassicraft.client.client.render.model
 
 /**
  * Represents an element that can be rendered.
@@ -8,7 +6,7 @@ import me.jurassicraft.client.game.world.Entity
 open class Model {
 
     internal val modelParts = mutableListOf<Mesh>()
-    internal val trackedEntities = mutableListOf<Entity>()
+    internal val trackedEntities = mutableListOf<ModeledObject>()
 
     /**
      * Destroys the element.

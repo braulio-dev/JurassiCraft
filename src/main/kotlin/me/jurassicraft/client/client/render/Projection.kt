@@ -1,6 +1,5 @@
-package me.jurassicraft.client.game.view
+package me.jurassicraft.client.client.render
 
-import me.jurassicraft.client.game.render.Renderer
 import org.joml.Matrix4f
 
 const val FOV = 60f // Deg

@@ -1,19 +1,19 @@
 package me.jurassicraft.client
 
 import me.jurassicraft.client.event.classScan
-import me.jurassicraft.client.game.Game
-import me.jurassicraft.client.game.view.Options
-import me.jurassicraft.client.game.render.Mesh
-import me.jurassicraft.client.game.render.Model
-import me.jurassicraft.client.game.render.TextureOption
-import me.jurassicraft.client.game.world.Entity
-import me.jurassicraft.client.world.World
+import me.jurassicraft.client.client.Client
+import me.jurassicraft.client.client.render.Options
+import me.jurassicraft.client.client.render.model.Mesh
+import me.jurassicraft.client.client.render.model.Model
+import me.jurassicraft.client.client.render.model.TextureOption
+import me.jurassicraft.client.client.render.model.ModeledObject
+import me.jurassicraft.client.common.world.World
 import org.joml.Vector3f
 
-lateinit var entity: Entity
+lateinit var entity: ModeledObject
 
 fun main() {
-    val game = Game(
+    val game = Client(
         Options(
             true,
             0,
@@ -27,7 +27,7 @@ fun main() {
     game.run()
 }
 
-fun init(game: Game) {
+fun init(game: Client) {
     val positions = floatArrayOf(
         // V0
         -0.5f, 0.5f, 0.5f,  // V1
@@ -99,10 +99,10 @@ fun init(game: Game) {
 
     val world = World("JurassiCraft", 100)
     val model = Model()
-    entity = Entity(world)
+    entity = ModeledObject(world)
     entity.position = Vector3f(0.0f, 0.0f, -2.0f)
 
-    val texture = game.assetManager.getTexture("/blocks/default.png")
+    val texture = game.assetManager.getTexture("/blocks/grass_block.png")
     val mesh = Mesh(positions, indices, TextureOption(texture, textCoords))
     model.modelParts.add(mesh)
     model.trackedEntities.add(entity)

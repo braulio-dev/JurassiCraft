@@ -1,17 +1,17 @@
-package me.jurassicraft.client.game
+package me.jurassicraft.client.client
 
-import me.jurassicraft.client.game.controller.MouseController
-import me.jurassicraft.client.game.controller.MovementController
-import me.jurassicraft.client.game.render.Renderer
-import me.jurassicraft.client.game.resource.AssetManager
-import me.jurassicraft.client.game.view.Camera
-import me.jurassicraft.client.game.view.Options
-import me.jurassicraft.client.game.view.Window
+import me.jurassicraft.client.client.controller.MouseController
+import me.jurassicraft.client.client.controller.MovementController
+import me.jurassicraft.client.client.render.Renderer
+import me.jurassicraft.client.client.asset.AssetManager
+import me.jurassicraft.client.client.render.Camera
+import me.jurassicraft.client.client.render.Options
+import me.jurassicraft.client.client.render.Window
 import mu.KotlinLogging
 
 private val log = KotlinLogging.logger { }
 
-class Game(gameOptions: Options) {
+class Client(gameOptions: Options) {
 
     val controllers = mutableListOf(MovementController(), MouseController())
     val window = Window("JurassiCraft", gameOptions)
@@ -22,14 +22,14 @@ class Game(gameOptions: Options) {
         private set
 
     init {
-        log.info { "Initializing engine..." }
+        log.info { "Initializing client..." }
         log.info { "Loading controllers..." }
         controllers.forEach { it.initialize(this, window) }
-        log.info { "Engine has been initialized" }
+        log.info { "Client has been initialized" }
     }
 
     fun run() {
-        log.info { "Engine is running" }
+        log.info { "Client is running" }
         running = true
 
         var deltaTicks = 0f
@@ -67,6 +67,6 @@ class Game(gameOptions: Options) {
             lastAttempt = now
         }
 
-        log.info { "Engine has stopped" }
+        log.info { "Client has stopped" }
     }
 }

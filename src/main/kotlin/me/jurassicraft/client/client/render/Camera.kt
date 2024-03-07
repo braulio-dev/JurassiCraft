@@ -1,10 +1,8 @@
-package me.jurassicraft.client.game.view
+package me.jurassicraft.client.client.render
 
 import org.joml.Matrix4f
 import org.joml.Vector2f
 import org.joml.Vector3f
-import kotlin.math.cos
-import kotlin.math.sin
 
 class Camera {
 

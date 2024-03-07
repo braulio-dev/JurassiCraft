@@ -24,6 +24,7 @@ dependencies {
     implementation("org.reflections:reflections:0.10.2")
     implementation("com.google.guava:guava:33.0.0-jre")
     implementation("org.l33tlabs.twl:pngdecoder:1.0")
+    implementation("com.github.ben-manes.caffeine:caffeine:3.0.0")
     implementation("org.apache.commons:commons-io:1.3.2")
     testImplementation(kotlin("test-junit"))
 }

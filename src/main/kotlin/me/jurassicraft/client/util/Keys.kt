@@ -1,6 +1,6 @@
 package me.jurassicraft.client.util
 
-import me.jurassicraft.client.game.view.Window
+import me.jurassicraft.client.client.render.Window
 import org.lwjgl.glfw.GLFW.*
 
 fun isKeyDown(window: Window, key: Int): Boolean {

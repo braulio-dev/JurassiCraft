@@ -1,4 +1,4 @@
-package me.jurassicraft.client.game.view
+package me.jurassicraft.client.client.render
 
 import me.jurassicraft.client.event.callEvent
 import me.jurassicraft.client.event.KeyboardInputEvent

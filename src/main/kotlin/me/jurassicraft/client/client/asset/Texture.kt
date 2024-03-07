@@ -1,16 +1,10 @@
-package me.jurassicraft.client.game.resource
+package me.jurassicraft.client.client.asset
 
-import me.jurassicraft.client.game.resource.Resource
-import org.lwjgl.BufferUtils
 import org.lwjgl.opengl.GL11C.*
-import org.lwjgl.opengl.GL13.GL_TEXTURE0
-import org.lwjgl.opengl.GL13.glActiveTexture
 import org.lwjgl.opengl.GL30.glGenerateMipmap
-import org.lwjgl.stb.STBImage
 import org.lwjgl.stb.STBImage.*
 import org.lwjgl.system.MemoryStack.stackPush
 import java.io.File
-import java.nio.ByteBuffer
 
 class Texture(override val path: String, override val namespace: String) : Resource {
 

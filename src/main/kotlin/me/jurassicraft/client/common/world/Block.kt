@@ -1,4 +1,4 @@
-package me.jurassicraft.client.world
+package me.jurassicraft.client.common.world
 
 import me.jurassicraft.client.element.Position
 import me.jurassicraft.client.element.impl.Cube

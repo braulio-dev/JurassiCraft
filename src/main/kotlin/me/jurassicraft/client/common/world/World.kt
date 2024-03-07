@@ -1,4 +1,4 @@
-package me.jurassicraft.client.world
+package me.jurassicraft.client.common.world
 
 class World(val name: String, val height: Int) {
 

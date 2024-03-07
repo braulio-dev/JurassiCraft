@@ -1,4 +1,4 @@
-package me.jurassicraft.client.world
+package me.jurassicraft.client.common.world
 
 class Chunk(val x: Int, val z: Int, val world: World) {
 

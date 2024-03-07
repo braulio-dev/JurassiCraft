@@ -1,4 +1,4 @@
-package me.jurassicraft.client.game.resource
+package me.jurassicraft.client.client.asset
 
 interface Resource {
 

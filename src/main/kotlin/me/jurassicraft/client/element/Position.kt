@@ -1,6 +1,6 @@
 package me.jurassicraft.client.element
 
-import me.jurassicraft.client.world.World
+import me.jurassicraft.client.common.world.World
 
 interface Coordinate {
     val x: Number

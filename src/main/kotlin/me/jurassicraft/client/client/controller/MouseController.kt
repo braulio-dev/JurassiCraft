@@ -1,8 +1,7 @@
-package me.jurassicraft.client.game.controller
+package me.jurassicraft.client.client.controller
 
-import me.jurassicraft.client.game.Game
-import me.jurassicraft.client.game.model.Controller
-import me.jurassicraft.client.game.view.Window
+import me.jurassicraft.client.client.Client
+import me.jurassicraft.client.client.render.Window
 import org.joml.Vector2f
 import org.lwjgl.glfw.GLFW.*
 
@@ -15,7 +14,7 @@ class MouseController : Controller {
     var hovered: Boolean = false
         private set
 
-    override fun initialize(game: Game, window: Window) {
+    override fun initialize(game: Client, window: Window) {
         // Disable cursor inside
         glfwSetInputMode(window.id, GLFW_CURSOR, GLFW_CURSOR_DISABLED)
 
@@ -37,7 +36,7 @@ class MouseController : Controller {
         }
     }
 
-    override fun takeInput(game: Game, window: Window, timeOffset: Long) {
+    override fun takeInput(game: Client, window: Window, timeOffset: Long) {
         val movement = Vector2f()
 
         // Update if we're in window
@@ -66,6 +65,6 @@ class MouseController : Controller {
         )
     }
 
-    override fun tick(game: Game, window: Window, timeOffset: Long) = Unit
+    override fun tick(game: Client, window: Window, timeOffset: Long) = Unit
 
 }

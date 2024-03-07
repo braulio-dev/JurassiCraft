@@ -1,14 +1,14 @@
-package me.jurassicraft.client.game.render
+package me.jurassicraft.client.client.render
 
-import me.jurassicraft.client.game.Game
-import me.jurassicraft.client.game.view.Projection
+import me.jurassicraft.client.client.Client
+import me.jurassicraft.client.client.render.model.Model
 import mu.KotlinLogging
 import org.lwjgl.opengl.GL.createCapabilities
 import org.lwjgl.opengl.GL20.*
 
 private val log = KotlinLogging.logger { }
 
-class Renderer(internal val game: Game) {
+class Renderer(internal val game: Client) {
 
     private val shaderProgram: ShaderProgram
     private val view = Projection(this)

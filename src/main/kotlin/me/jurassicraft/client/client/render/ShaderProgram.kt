@@ -1,4 +1,4 @@
-package me.jurassicraft.client.game.render
+package me.jurassicraft.client.client.render
 
 import org.joml.Matrix4f
 import org.lwjgl.opengl.GL20.*
