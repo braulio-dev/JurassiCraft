@@ -2,7 +2,6 @@ package me.jurassicraft.client.game
 
 import me.jurassicraft.client.game.controller.MouseController
 import me.jurassicraft.client.game.controller.MovementController
-import me.jurassicraft.client.game.model.Controller
 import me.jurassicraft.client.game.render.Renderer
 import me.jurassicraft.client.game.resource.AssetManager
 import me.jurassicraft.client.game.view.Camera
@@ -33,30 +32,30 @@ class Game(gameOptions: Options) {
         log.info { "Engine is running" }
         running = true
 
-        var deltaUpdate = 0f
+        var deltaTicks = 0f
         var deltaFps = 0f
 
         var lastAttempt = System.currentTimeMillis()
-        var updateTime = lastAttempt
+        var tickTime = lastAttempt
         while (running && !window.closed) {
             window.pollEvents()
 
-            val millisPerUpdate = 1000f / window.options.ups
+            val millisPerTick = 1000f / window.options.tps
             val millisPerFrame = if (window.options.fps <= 0) 0f else 1000f / window.options.fps
 
             val now = System.currentTimeMillis()
             val deltaTime = now - lastAttempt
-            deltaUpdate += deltaTime / millisPerUpdate
+            deltaTicks += deltaTime / millisPerTick
             deltaFps += deltaTime / millisPerFrame
 
-            if (deltaUpdate >= 1 || window.options.fps <= 0) {
+            if (deltaTicks >= 1 || window.options.fps <= 0) {
                 controllers.forEach { it.takeInput(this, window, deltaTime) }
             }
 
-            if (deltaUpdate >= 1) {
-                controllers.forEach { it.update(this, window, now - updateTime) }
-                updateTime = now
-                deltaUpdate--
+            if (deltaTicks >= 1) {
+                controllers.forEach { it.tick(this, window, now - tickTime) }
+                tickTime = now
+                deltaTicks--
             }
 
             if (window.options.fps <= 0 || deltaFps >= 1) {

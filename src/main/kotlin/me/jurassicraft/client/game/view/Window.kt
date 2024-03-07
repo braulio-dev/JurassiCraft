@@ -10,7 +10,7 @@ private val log = mu.KotlinLogging.logger { }
 data class Options(
     val compatibleProfile: Boolean,
     val fps: Int,
-    val ups: Int,
+    val tps: Int,
     val dimension: Pair<Int, Int>
 )
 

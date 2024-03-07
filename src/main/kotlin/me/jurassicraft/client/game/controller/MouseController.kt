@@ -66,6 +66,6 @@ class MouseController : Controller {
         )
     }
 
-    override fun update(game: Game, window: Window, timeOffset: Long) = Unit
+    override fun tick(game: Game, window: Window, timeOffset: Long) = Unit
 
 }

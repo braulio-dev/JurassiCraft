@@ -16,7 +16,7 @@ interface Controller {
     /**
      * Updates the controller.
      */
-    fun update(game: Game, window: Window, timeOffset: Long)
+    fun tick(game: Game, window: Window, timeOffset: Long)
 
     /**
      * Initializes the controller.

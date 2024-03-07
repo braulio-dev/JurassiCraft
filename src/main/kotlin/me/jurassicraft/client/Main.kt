@@ -17,7 +17,7 @@ fun main() {
         Options(
             true,
             0,
-            30,
+            20,
             Pair(1280, 720)
         )
     )
