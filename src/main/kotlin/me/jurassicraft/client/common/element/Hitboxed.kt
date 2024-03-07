@@ -1,4 +1,4 @@
-package me.jurassicraft.client.element
+package me.jurassicraft.client.common.element
 
 import me.jurassicraft.client.asset.Resource
 

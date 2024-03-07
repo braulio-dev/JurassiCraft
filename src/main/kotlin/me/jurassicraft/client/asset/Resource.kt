@@ -1,6 +1,6 @@
 package me.jurassicraft.client.asset
 
-import me.jurassicraft.client.element.Namespace
+import me.jurassicraft.client.common.element.Namespace
 
 /**
  * Represents a resource that can be loaded from the classpath.
