@@ -1,9 +1,6 @@
 package me.jurassicraft.client.game.render
 
 import org.lwjgl.opengl.GL30.*
-import org.lwjgl.stb.STBImage
-import org.lwjgl.system.MemoryStack
-import java.nio.FloatBuffer
 
 class Mesh(vertices: FloatArray, indices: IntArray, private val option: MeshOption? = null) {
 

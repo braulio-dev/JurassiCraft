@@ -23,7 +23,7 @@ sealed interface MeshOption {
 /**
  * Changes the color of a mesh.
  */
-class ColorOption(private val color: FloatArray) : MeshOption {
+class Colors(private val color: FloatArray) : MeshOption {
 
     private var cboId: Int = 0
 
@@ -49,7 +49,7 @@ class ColorOption(private val color: FloatArray) : MeshOption {
     }
 }
 
-class TextureOption(private val texture: Texture, val coords: FloatArray) : MeshOption {
+class TextureCoords(private val texture: Texture, val coords: FloatArray) : MeshOption {
 
     private var tboId: Int = 0
 
@@ -84,4 +84,3 @@ class TextureOption(private val texture: Texture, val coords: FloatArray) : Mesh
     }
 
 }
-
