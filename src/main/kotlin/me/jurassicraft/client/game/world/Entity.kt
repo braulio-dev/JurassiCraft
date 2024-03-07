@@ -11,10 +11,14 @@ class Entity(world: World) {
 
     val id = ++idCount
 
-    internal val worldMatrix = Matrix4f()
+    internal val modelMatrix = Matrix4f()
     internal var scale: Float = 1.0f
     internal var position: Vector3f = Vector3f()
     internal var rotation: Quaternionf = Quaternionf()
+
+    init {
+        update()
+    }
 
     // radians
     fun setRotation(x: Float, y: Float, z: Float, angle: Float) {
@@ -22,7 +26,7 @@ class Entity(world: World) {
     }
 
     internal fun update() {
-        worldMatrix.translationRotateScale(position, rotation, scale)
+        modelMatrix.translationRotateScale(position, rotation, scale)
     }
 
 }

@@ -1,4 +1,4 @@
-package me.jurassicraft.client.game
+package me.jurassicraft.client.game.view
 
 import me.jurassicraft.client.event.callEvent
 import me.jurassicraft.client.event.KeyboardInputEvent
@@ -7,16 +7,16 @@ import org.lwjgl.glfw.GLFW.*
 
 private val log = mu.KotlinLogging.logger { }
 
-data class GameOptions(
+data class Options(
     val compatibleProfile: Boolean,
     val fps: Int,
     val ups: Int,
     val dimension: Pair<Int, Int>
 )
 
-class GameWindow(title: String, val options: GameOptions) {
+class Window(title: String, val options: Options) {
 
-    val window: Long
+    val id: Long
 
     var dimension: Pair<Int, Int>
 
@@ -24,7 +24,7 @@ class GameWindow(title: String, val options: GameOptions) {
         get() = dimension.first.toFloat() / dimension.second.toFloat()
 
     val closed: Boolean
-        get() = glfwWindowShouldClose(window)
+        get() = glfwWindowShouldClose(id)
 
     init {
         if (options.dimension.first <= 0 || options.dimension.second <= 0) {
@@ -48,30 +48,30 @@ class GameWindow(title: String, val options: GameOptions) {
         }
 
         // Create the window
-        window = glfwCreateWindow(dimension.first, dimension.second, title, 0, 0)
+        id = glfwCreateWindow(dimension.first, dimension.second, title, 0, 0)
 
         // Center the window on the screen
         val vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor())!!
-        glfwSetWindowPos(window, (vidmode.width() - dimension.first) / 2, (vidmode.height() - dimension.second) / 2)
+        glfwSetWindowPos(id, (vidmode.width() - dimension.first) / 2, (vidmode.height() - dimension.second) / 2)
 
         // Setup callbacks
-        glfwSetFramebufferSizeCallback(window, ::onResize)
+        glfwSetFramebufferSizeCallback(id, ::onResize)
         glfwSetErrorCallback(::onError)
-        glfwSetKeyCallback(window, ::onInput)
+        glfwSetKeyCallback(id, ::onInput)
 
         // Make the OpenGL context current and show the window
-        glfwMakeContextCurrent(window)
+        glfwMakeContextCurrent(id)
         glfwSwapInterval(if (options.fps > 0) 1 else 0)
-        glfwShowWindow(window)
+        glfwShowWindow(id)
     }
 
     fun destroy() {
-        glfwFreeCallbacks(window)
-        glfwDestroyWindow(window)
+        glfwFreeCallbacks(id)
+        glfwDestroyWindow(id)
         glfwTerminate()
         glfwSetErrorCallback(null)?.free()
-        glfwSetKeyCallback(window, null)?.free()
-        glfwSetFramebufferSizeCallback(window, null)?.free()
+        glfwSetKeyCallback(id, null)?.free()
+        glfwSetFramebufferSizeCallback(id, null)?.free()
     }
 
     fun pollEvents() {
@@ -79,7 +79,7 @@ class GameWindow(title: String, val options: GameOptions) {
     }
 
     fun refresh() {
-        glfwSwapBuffers(window)
+        glfwSwapBuffers(id)
     }
 
     private fun onError(code: Int, msg: Long) {

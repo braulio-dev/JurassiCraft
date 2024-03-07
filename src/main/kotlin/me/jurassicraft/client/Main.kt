@@ -1,28 +1,26 @@
 package me.jurassicraft.client
 
-import me.jurassicraft.client.event.EventHandler
-import me.jurassicraft.client.event.KeyboardInputEvent
 import me.jurassicraft.client.event.classScan
 import me.jurassicraft.client.game.Game
-import me.jurassicraft.client.game.GameOptions
+import me.jurassicraft.client.game.view.Options
 import me.jurassicraft.client.game.render.Mesh
 import me.jurassicraft.client.game.render.Model
 import me.jurassicraft.client.game.render.TextureOption
 import me.jurassicraft.client.game.world.Entity
-import me.jurassicraft.client.util.Keys
 import me.jurassicraft.client.world.World
 import org.joml.Vector3f
-import org.joml.Vector4f
 
 lateinit var entity: Entity
 
 fun main() {
-    val game = Game(GameOptions(
-        true,
-        0,
-        30,
-        Pair(1280, 720)
-    ))
+    val game = Game(
+        Options(
+            true,
+            0,
+            30,
+            Pair(1280, 720)
+        )
+    )
 
     init(game)
     classScan()
@@ -103,7 +101,6 @@ fun init(game: Game) {
     val model = Model()
     entity = Entity(world)
     entity.position = Vector3f(0.0f, 0.0f, -2.0f)
-    entity.setRotation(1f, 1f, 1f, Math.toRadians(0.0).toFloat())
 
     val texture = game.assetManager.getTexture("/blocks/default.png")
     val mesh = Mesh(positions, indices, TextureOption(texture, textCoords))
@@ -111,30 +108,4 @@ fun init(game: Game) {
     model.trackedEntities.add(entity)
 
     game.renderer.addModel(model)
-}
-
-@EventHandler
-fun onMove(event: KeyboardInputEvent) {
-    val delta = Vector4f(0f)
-    when (event.key) {
-        Keys.SPACE -> delta.y = 1f
-        Keys.LEFT_SHIFT -> delta.y = -1f
-        Keys.W -> delta.z = 1f
-        Keys.S -> delta.z = -1f
-        Keys.A -> delta.x = -1f
-        Keys.D -> delta.x = 1f
-        // idk
-        Keys.Q -> {
-            entity.rotation.rotateAxis(Math.toRadians(5.0).toFloat(), 0f, 1f, 0f)
-            entity.update()
-            return
-        }
-    }
-
-    delta.mul(0.1f)
-    if (event.isControlDown()) delta.mul(5f)
-
-    entity.position.add(delta.x, delta.y, delta.z)
-    entity.scale += delta.w
-    entity.update()
 }

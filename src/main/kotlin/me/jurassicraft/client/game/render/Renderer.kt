@@ -1,6 +1,7 @@
 package me.jurassicraft.client.game.render
 
 import me.jurassicraft.client.game.Game
+import me.jurassicraft.client.game.view.Projection
 import mu.KotlinLogging
 import org.lwjgl.opengl.GL.createCapabilities
 import org.lwjgl.opengl.GL20.*
@@ -10,7 +11,7 @@ private val log = KotlinLogging.logger { }
 class Renderer(internal val game: Game) {
 
     private val shaderProgram: ShaderProgram
-    private val view = RenderView(this)
+    private val view = Projection(this)
     private val models = mutableListOf<Model>()
 
     init {
@@ -21,8 +22,9 @@ class Renderer(internal val game: Game) {
             link()
         }
 
-        shaderProgram.createUniform("world")
-        shaderProgram.createUniform("projection")
+        shaderProgram.createUniform("modelViewMatrix")
+        shaderProgram.createUniform("worldViewMatrix")
+        shaderProgram.createUniform("projectionMatrix")
         shaderProgram.createUniform("tex_sampler")
         view.update()
     }
@@ -39,7 +41,8 @@ class Renderer(internal val game: Game) {
 
         // Use the shader program
         shaderProgram.bind()
-        shaderProgram.setUniform("projection", view.projectionMatrix)
+        shaderProgram.setUniform("projectionMatrix", view.projectionMatrix)
+        shaderProgram.setUniform("worldViewMatrix", game.camera.viewMatrix)
         shaderProgram.setUniform("tex_sampler", 0)
 
         renderQueue()
@@ -57,7 +60,7 @@ class Renderer(internal val game: Game) {
                 mesh.bind()
                 glEnable(GL_DEPTH_TEST)
                 model.trackedEntities.forEach { entity ->
-                    shaderProgram.setUniform("world", entity.worldMatrix)
+                    shaderProgram.setUniform("modelViewMatrix", entity.modelMatrix)
                     glDrawElements(GL_TRIANGLES, mesh.vertexCount, GL_UNSIGNED_INT, 0)
                 }
                 glDisable(GL_DEPTH_TEST)

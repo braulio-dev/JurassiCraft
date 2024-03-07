@@ -1,7 +1,11 @@
 package me.jurassicraft.client.util
 
-import org.lwjgl.glfw.GLFW
+import me.jurassicraft.client.game.view.Window
 import org.lwjgl.glfw.GLFW.*
+
+fun isKeyDown(window: Window, key: Int): Boolean {
+    return glfwGetKey(window.id, key) == GLFW_PRESS
+}
 
 object Keys {
     const val NUM_0: Int = GLFW_KEY_0
